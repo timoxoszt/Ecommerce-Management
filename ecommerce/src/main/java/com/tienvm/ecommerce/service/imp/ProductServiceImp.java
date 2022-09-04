@@ -2,13 +2,18 @@ package com.tienvm.ecommerce.service.imp;
 
 import com.tienvm.ecommerce.model.Product;
 import com.tienvm.ecommerce.repository.jpa.ProductRepositoryJPA;
+import com.tienvm.ecommerce.repository.mybatis.ProductRepositoryMybatis;
+import com.tienvm.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
-public class ProductServiceImp {
+public class ProductServiceImp implements ProductService {
     @Autowired
     ProductRepositoryJPA productRepositoryJPA;
 
@@ -24,5 +29,26 @@ public class ProductServiceImp {
         productRepositoryJPA.save(new Product("Giay the thao", "B", "XL",24424,12378123));
         productRepositoryJPA.save(new Product("Ao somi", "A", "XL",2457887,871212));
         productRepositoryJPA.save(new Product("Quan the thao", "A", "XL",275278,71237172));
+    }
+
+    @Resource
+    ProductRepositoryMybatis productRepositoryMybatis;
+
+    public List<Product> getAllProduct(BigDecimal price, String condition){
+        List<Product> products;
+        if(price==null || condition==null)
+            products = productRepositoryMybatis.getAllProduct();
+        else
+            switch (condition) {
+                case "LESS_THAN":
+                    products = productRepositoryMybatis.getAllProductLess(price);
+                case "GREATER_THAN":
+                    products = productRepositoryMybatis.getAllProductGreater(price);
+                case "EQUAL":
+                    products = productRepositoryMybatis.getAllProductEqual(price);
+                default:
+                    products = null;
+            }
+        return products;
     }
 }
