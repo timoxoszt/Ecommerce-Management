@@ -21,4 +21,11 @@ public class Customer {
 
     @Column(name = "card_id")
     private Integer cardId;
+
+    public Customer(String customerName, String customerAddress, String customerPhone, Integer cardId) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.cardId = cardId;
+    }
 }
