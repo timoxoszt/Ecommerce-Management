@@ -29,4 +29,16 @@ public class Product {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    public Product(String nameProduct, String type, String size, Integer quantity, int price) {
+        this.nameProduct = nameProduct;
+        this.type = type;
+        this.size = size;
+        this.quantity = quantity;
+        this.price = BigDecimal.valueOf(price);
+    }
+
+    public Product() {
+
+    }
 }
