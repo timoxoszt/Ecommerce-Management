@@ -1,2 +1,4 @@
-package com.tienvm.ecommerce.service;public class CustomerService {
+package com.tienvm.ecommerce.service;
+
+public interface CustomerService {
 }
