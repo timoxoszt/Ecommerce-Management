@@ -1,33 +1,24 @@
 package com.tienvm.ecommerce.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "CUSTOMER")
 public class Customer {
     @Id
     @GeneratedValue
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", nullable = false)
     private Integer customerId;
 
-    @Column(name = "customer_name", nullable = false)
+    @Column(name = "customer_name",nullable = false)
     private String customerName;
 
-    @Column(name = "address")
+    @Column(name = "address",nullable = false)
     private String customerAddress;
 
-    @Column(name = "phone_no", nullable = false)
+    @Column(name = "phone_no")
     private String customerPhone;
 
-    @OneToOne
-    @JoinColumn(name = "card_id")
-    private Card card;
+    @Column(name = "card_id")
+    private Integer cardId;
 }

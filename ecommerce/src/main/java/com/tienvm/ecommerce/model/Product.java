@@ -1,26 +1,21 @@
 package com.tienvm.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.math.BigDecimal;
 
-@Data
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "PRODUCT")
+@Getter
+@Setter
 public class Product {
     @Id
     @GeneratedValue
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id",nullable = false)
     private Integer productId;
 
-    @Column(name = "name_product", nullable = false)
+    @Column(name = "name_product",nullable = false)
     private String nameProduct;
 
     @Column(name = "type")
@@ -29,10 +24,9 @@ public class Product {
     @Column(name = "size")
     private String size;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(nullable = false)
     private Integer quantity;
 
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
-    Set<CardItem> cardItems;
+    @Column(nullable = false)
+    private BigDecimal price;
 }
