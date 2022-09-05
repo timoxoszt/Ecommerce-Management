@@ -42,12 +42,15 @@ public class ProductServiceImp implements ProductService {
             switch (condition) {
                 case "LESS_THAN":
                     products = productRepositoryMybatis.getAllProductLess(price);
+                    break;
                 case "GREATER_THAN":
                     products = productRepositoryMybatis.getAllProductGreater(price);
+                    break;
                 case "EQUAL":
                     products = productRepositoryMybatis.getAllProductEqual(price);
+                    break;
                 default:
-                    products = null;
+                    products = productRepositoryMybatis.getAllProductEqual(price);;
             }
         return products;
     }
